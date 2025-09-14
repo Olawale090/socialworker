@@ -254,7 +254,7 @@ class ServiceWorkerApp{
 
     eachYearPicker.forEach(function(k,v){
       window.addEventListener('DOMContentLoaded',function(){
-        [viewsData[v]].forEach(function(k){
+        [viewsData[0]].forEach(function(k){
           let months = Object.values(k);
           let mappedMonthKeys = Object.keys(months[0]);
           let mappedMonthViews = Object.values(months[0]);
@@ -263,13 +263,14 @@ class ServiceWorkerApp{
           let dataPacker = [mappedMonths,mappedMonthViews];
 
           monthListHolder.innerHTML = ``;
+    
+          eachYearPicker[0].classList.add("year-active");
 
           for(let i = 0; i<dataPacker[0].length; i++){
             monthListHolder.innerHTML +=  `<div class="months">
-                                            <div class="month">${dataPacker[0][i]}</div> 
-                                            <div class="views-per-month">Views ${dataPacker[1][i]}</div>
+                                            <div class="month"> ${dataPacker[0][i]} </div> 
+                                            <div class="views-per-month"> ${dataPacker[1][i]} views </div>
                                            </div>`;
-           
           }
 
         });
@@ -302,8 +303,24 @@ class ServiceWorkerApp{
   }
 
   async userDataFetch(){
-    let data = await this.retrieveAllContent();
-
+    // let data = await this.retrieveAllContent();
+      let data = [
+                      { view_count:50, published_at:"2025-05-31" },
+                      { view_count:40, published_at:"2025-05-31" },
+                      { view_count:13, published_at:"2025-05-31" },
+                      { view_count:70, published_at:"2025-06-31" },
+                      { view_count:40, published_at:"2025-06-31" },
+                      { view_count:100, published_at:"2025-07-31" },
+                      { view_count:300, published_at:"2025-08-31" },
+                      { view_count:70, published_at:"2024-01-31" },
+                      { view_count:62, published_at:"2024-02-31" },
+                      { view_count:83, published_at:"2024-03-31" },
+                      { view_count:91, published_at:"2024-04-31" },
+                      { view_count:90, published_at:"2024-06-31" },
+                      { view_count:105, published_at:"2024-07-31" },
+                      { view_count:200, published_at:"2024-08-31" }
+                  ];
+                    
     let grouped = {};
     
     for (let item of data) {
