@@ -251,7 +251,6 @@ class ServiceWorkerApp{
     }
 
     let monthListHolder = this.monthListHolder;
-    let dataBundle = [];
 
     eachYearPicker.forEach(function(k,v){
       window.addEventListener('DOMContentLoaded',function(){
@@ -261,13 +260,9 @@ class ServiceWorkerApp{
           let mappedMonthViews = Object.values(months[0]);
         
           let mappedMonths = mappedMonthKeys.map(m => monthNamesObject[m]);
-          console.log("months",months);
-          console.log("mappedMonths", mappedMonths);
-          console.log("mappedMonthViews", mappedMonthViews);
           let dataPacker = [mappedMonths,mappedMonthViews];
-          dataBundle.push(dataPacker);
+
           monthListHolder.innerHTML = ``;
-          console.log("onload:",dataPacker);
 
           for(let i = 0; i<dataPacker[0].length; i++){
             monthListHolder.innerHTML +=  `<div class="months">
@@ -288,7 +283,6 @@ class ServiceWorkerApp{
         
           let mappedMonths = mappedMonthKeys.map(m => monthNamesObject[m]);
           let dataPacker = [mappedMonths,mappedMonthViews];
-          dataBundle.push(dataPacker);
           monthListHolder.innerHTML = ``;
           
           for(let i = 0; i<dataPacker[0].length; i++){
