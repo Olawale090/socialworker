@@ -302,6 +302,8 @@ class ServiceWorkerApp{
 
   async userDataFetch(){
     let data = await this.retrieveAllContent();
+    data.reverse();
+                    
     let grouped = {};
     
     for (let item of data) {
@@ -384,7 +386,6 @@ class ServiceWorkerApp{
     const response = await api.get(URL_RETRIEVE_ALL_ACCOUNT);
     let ACCOUNT_ID = response.data.data[0].id;
     localStorage.setItem("ACCOUNT_ID",ACCOUNT_ID);
-    // console.log("ACCOUNT ID",ACCOUNT_ID);
     return ACCOUNT_ID; 
   }
 
@@ -398,7 +399,6 @@ class ServiceWorkerApp{
         const response = await api.get(URL_RETRIEVE_ALL_PROFILE);
         let PROFILE_ID = JSON.stringify(response.data.data[0].id);
         localStorage.setItem("PROFILE_ID",PROFILE_ID);
-        // console.log("PROFILE_ID",PROFILE_ID);
         return PROFILE_ID; 
       }else{
         console.log("Profile Properties are undefined")
@@ -410,7 +410,6 @@ class ServiceWorkerApp{
     }
       
   }
-
 
   async retrieveAllContent(){
     try{
